@@ -22,7 +22,7 @@
 					<h5>Trusted by thousands of drivers.</h5>
 					<h2>Quality Parts Delivered Fast</h2>
 					<p>Your one-stop shop for reliable automotive parts online.</p>             
-                    <a href="#" class="comman_btn">Support</a>            
+                    <a href="./support" class="comman_btn">Support</a>            
 				</div>
 			</div>
 			<div class="col-lg-6">
