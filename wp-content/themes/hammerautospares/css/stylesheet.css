@@ -125,8 +125,8 @@ section {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
-    text-transform: capitalize;
     letter-spacing: 0px;
+    display: inline-block;
 }
 
 
@@ -228,104 +228,86 @@ header ul {
 }
 */
 
-.video_banner {
-    position: relative;
-    padding: 0px;
-}
-
-.video_banner video {
-    min-height: 100vh;
-    width: 100%;
-}
-
-.form_bx {
+.hero_video video {
     position: absolute;
-    top: 13%;
     width: 100%;
+    transform: translateY(-50%);
+    top: 50%;
+    height: 100%;
+    object-fit: fill;
 }
 
-
-
-.form_bx .btn_ {
-    margin-top: 45px;
+.hero_video .container {
+    position: relative;
+    z-index: 1;
 }
 
-.form_bx #form_ {
-    padding: 32px;
-    background: rgb(255 255 255 / 29%);
-    border-radius: 35px;
-}
-
-.form_bx #form_ input,
-textarea {
+.hero_video {
+    overflow: hidden;
     width: 100%;
-    padding: 15px;
-    max-width: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid #eee;
+    position: relative;
+    padding: 90px 0;
 }
 
-#form_ textarea {
-    height: 90px;
-}
-
-.form_bx #form_ label {
-    color: #fff;
-    text-transform: capitalize;
-    margin: 5px 0px 5px 0px;
-}
-
-.form_bx #form_ .row {
-    row-gap: 10px;
-}
-
-.form_bx #form_ ::placeholder {
-    text-transform: capitalize;
-    color: gray;
-}
-
-.form_bx #form_ .btn_ {
-    text-align: center;
-}
-
-
-
-
-
-
-
-
-
-.form_bx ul {
-    padding: 0;
-    margin: 0;
+.star-list {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 5px;
     list-style: none;
-    margin-bottom: 10px;
+    margin: 0;
+    padding: 0;
 }
 
-.form_bx ul li i {
+.star-list li i {
     color: #fff;
-    font-size: 15px;
+    font-size: 12px;
 }
 
-.form_bx p {
+.star-list li {
+    margin-right: 1px;
+}
+.hero_left h5 {
     color: #fff;
-    text-transform: capitalize;
-    margin-top: 5px;
-    margin-bottom: 7px;
+    font-size: 14px;
+    margin: 15px 0;
+	font-weight:400;
+}
+.hero_left p {
+    color: #fff;
+    font-size: 16px;
+    margin: 0px 0 40px;
 }
 
-.form_bx h3 {
-    font-size: 70px;
-    text-transform: capitalize;
-    font-weight: 600;
+.hero_left h2 {
     color: #fff;
-    width: 100%;
+    font-size: 64px;
+    font-weight: 700;
+    margin: 0 0 15px;
 }
+.hero_right form {
+    background-color: rgb(255 255 255 / 15%);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.hero_right .form-field label {
+    color: #fff;
+}
+
+.hero_right .form-field input, .hero_right .form-field textarea {border-color: #fff;}
+
+.hero_right button.submit-btn {
+    margin: 0 auto;
+    background-color: transparent;
+    border-color: #fff;
+    transition: all 0.3s;
+}
+
+.hero_right button.submit-btn:hover {
+    background-color: #4A90E2;
+    border-color: #4A90E2;
+}
+/* end hero */
 
 .welcome_section .left_text h3 {
     font-size: 20px;
@@ -356,6 +338,7 @@ textarea {
 
 .quality_auto {
     background: #1a1a1a;
+    padding-bottom: 0;
 }
 
 .quality_auto .section_title {
@@ -378,7 +361,7 @@ textarea {
     background: #fff;
     margin-top: 15px;
     border-radius: 0;
-    padding: 15px;
+    padding: 25px;
 }
 
 .card_design .card_text h4 {
@@ -464,7 +447,7 @@ textarea {
 
 .footer_section {
     background-color: #1a1a1a;
-    padding: 90px 0px 0px 0px;
+    padding: 80px 0px 90px 0px;
 }
 
 .footer_section .footer_cot h2 {
@@ -482,22 +465,30 @@ textarea {
     max-width: 325px;
     display: inline-block;
 }
-
-.footer_section .bottom_icon {
+.scl-list {
     display: flex;
     align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-    margin-top: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.scl-list li a {
+    color: #fff;
+    font-size: 20px;
+}
+
+.scl-list li {
+    margin-right: 14px;
 }
 
 .footer_section .bottom_icon i {
     color: #fff;
     font-size: 25px;
 }
-
+.bottom_icon a {
+    padding: 4px;
+}
 .footer_section .align_no {
 
     display: flex;
@@ -522,11 +513,10 @@ textarea {
 }
 
 .footer_section form {
-
     display: flex;
     flex-direction: column;
-    padding-left: 50px;
-    margin-top: 26px;
+    padding-left: 0px;
+    margin-top: 25px;
 }
 
 .footer_section form label {
@@ -550,17 +540,19 @@ textarea {
 .footer_section form .comman_btn {
     width: max-content;
     margin-top: 15px;
-    padding: 18px 18px;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 15px 45px;
 }
 
 footer .copyright-text {
-    text-align: center;
-    border-top: 1px solid #eeeeee47;
     margin-top: 52px;
     padding: 15px 0px 15px 0px;
-
 }
-
+.copyright-text p {
+    color: #fff;
+    font-size: 14px;
+}
 
 footer .copyright-text span {
     color: #fff;
@@ -759,7 +751,101 @@ button.submit-btn {
 
 
 
+@media only screen and (max-width:991px){
+span.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}	
+button.navbar-toggler {
+    background-color: #000 !important;
+}
+
+.navbar-collapse ul.navbar-nav {
+    gap: 12px;
+}
+
+div#navbarSupportedContent {
+    padding: 20px 0;
+}
+
+
+
+	
+.hero_right {
+    margin-top: 40px;
+}	
+.quality_auto .card_design {
+    margin: 0 0 30px;
+}
+.quality_auto {
+    padding-bottom: 30px;
+}
+/* Footer */
+.footer_section .col-lg-4 {
+    text-align: left !important;
+    margin: 25px 0;
+}
+
+.footer_section .align_no {
+    justify-content: flex-start;
+}
+
+.footer_section .footer_cot h2 {
+    font-size: 22px;
+}
+
+.footer_cot p b {
+    font-size: 16px;
+}
+
+.footer_section .align_no a {
+    font-size: 16px;
+}
+
+.footer_section .footer_cot span {
+    font-size: 16px;
+    line-height: normal;
+}
+
+.footer_section {
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+footer .copyright-text {
+    margin-top: 10px;
+}
+
+.footer_section form .comman_btn {
+    padding: 15px 20px;
+}
+/* End Footer */
+}
 @media only screen and (max-width:767px){
+.hero_left h2 {
+    font-size: 42px;
+}
+
+.hero_video {
+    padding: 50px 0;
+}
+
+.hero_right form {
+    padding: 20px;
+}
+.hero_left p {
+    margin-bottom: 15px;
+}
+
+.comman_btn {
+    font-size: 16px;
+    padding: 15px 50px;
+}
+.welcome_section .gallery_pic {
+    grid-template-columns: 1fr 1fr;
+}
+.car_gallery .pic_s {
+    grid-template-columns: 1fr 1fr;
+}	
 /* Product page */	
 .bn_cmn_title h2 {
     font-size: 42px;
