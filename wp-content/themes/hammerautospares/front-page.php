@@ -3,7 +3,8 @@
    
    get_header();  // Include header.php
    
-   ?>
+?>
+
 <div class="hero_video">  
 <video muted autoplay loop>
 	<source src="<?php echo get_template_directory_uri(); ?>/vi_/vid.mp4" type="video/mp4">
@@ -27,27 +28,62 @@
 			</div>
 			<div class="col-lg-6">
 				<div class="hero_right">
-					<form>
-						<div class="form-field">
-							<label>Your First Name</label>
-							<input type="text" placeholder="Enter your first name">
-						</div>
-						<div class="form-field">
-							<label>Your Email Address*</label>
-							<input type="email" placeholder="Enter your email address">
-						</div>
-						<div class="form-field">
-							<label>Phone number*</label>
-							<input type="email" placeholder="Enter your phone number">
-						</div>
-						<div class="form-field">
-							<label>Your Message*</label>
-							<textarea placeholder="Type your message here"></textarea>
-						</div>
-						<div class="form-field text-center">
-							<button type="button" class="submit-btn">Submit Your Inquiry</button>
-						</div>
-					</form>
+                <?php            
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        global $wpdb;
+                    
+                        // Get the form data
+                        $first_name = sanitize_text_field($_POST['first_name']);
+                        $email = sanitize_email($_POST['email']);
+                        $phone = sanitize_text_field($_POST['phone']);
+                        $message = sanitize_textarea_field($_POST['message']);
+                    
+                        // Insert data into the custom table
+                        $wpdb->insert(
+                            $wpdb->prefix . 'contact_inquiries',
+                            array(
+                                'first_name' => $first_name,
+                                'email' => $email,
+                                'phone' => $phone,
+                                'message' => $message,
+                                'created_at' => current_time('mysql'),
+                            )
+                        );
+                    
+                        // Send email
+                        $to = $email;
+                        $subject = "Thank you for your inquiry!";
+                        $body = "Hi $first_name,\n\nThank you for reaching out to us. We have received your inquiry and will get back to you soon.\n\nBest regards,\nHammerautospares";
+                        $headers = ['Content-Type: text/plain; charset=UTF-8', 'From: Hammerautospares <info@hammerautospares.uk>'];
+                    
+                        if (wp_mail($to, $subject, $body, $headers)) {
+                            echo "<div class='success-message'>Thank you for your inquiry! A confirmation email has been sent to your address.</div>";
+                        } else {
+                            echo "<div class='error-message'>There was an issue sending your email. Please try again.</div>";
+                        }
+                    }              
+                ?>    
+                <form method="POST" action="">
+                    <div class="form-field">
+                        <label>Your First Name</label>
+                        <input type="text" name="first_name" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Your Email Address*</label>
+                        <input type="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Phone number*</label>
+                        <input type="text" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Your Message*</label>
+                        <textarea name="message" placeholder="Type your message here" required></textarea>
+                    </div>
+                    <div class="form-field text-center">
+                        <button type="submit" class="submit-btn">Submit Your Inquiry</button>
+                    </div>
+                </form>
 				</div>
 			</div>
 		</div>

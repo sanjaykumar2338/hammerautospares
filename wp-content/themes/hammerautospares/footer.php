@@ -30,11 +30,41 @@
                     <div class="footer_cot">
                         <h2>servies</h2>
                         <div class="form">
-                            <form action="">
-                                <label for="">enter your email address </label>
-                                <input type="email" placeholder="Your email for updates">
-                                <a href="" class="comman_btn">Subscribe for exclusive offers</a>
-                            </form>
+                        <?php            
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                global $wpdb;
+                            
+                                // Get the form data
+                                $email = sanitize_email($_POST['email']);
+                            
+                                // Insert data into the custom table
+                                $wpdb->insert(
+                                    $wpdb->prefix . 'subscribers',
+                                    array(
+                                        'email' => $email,
+                                        'created_at' => current_time('mysql'),
+                                    )
+                                );
+                            
+                                // Send email
+                                $to = $email;
+                                $subject = "Thank you for subscribe exclusive offers!";
+                                $body = "Hi $first_name,\n\nThank you for reaching out to us.\n\nBest regards,\nHammerautospares";
+                                $headers = ['Content-Type: text/plain; charset=UTF-8', 'From: Hammerautospares <info@hammerautospares.uk>'];
+                            
+                                if (wp_mail($to, $subject, $body, $headers)) {
+                                    echo "<div style='color: white;' class='success-message'>Thank you for your inquiry! A confirmation email has been sent to your address.</div>";
+                                } else {
+                                    echo "<div style='color: white;' class='error-message'>There was an issue sending your email. Please try again.</div>";
+                                }
+                            }              
+                        ?>   
+                        <form action="" method="POST">
+                            <label for="email">Enter your email address</label>
+                            <input type="email" name="email" placeholder="Your email for updates" required>
+                            <button type="submit" class="comman_btn">Subscribe for exclusive offers</button>
+                        </form>
+
                         </div>
                     </div>
                 </div>
